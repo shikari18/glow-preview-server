@@ -97,7 +97,7 @@ export function DashboardSidebar() {
     return (
     <aside
       className={`flex h-dvh shrink-0 flex-col overflow-hidden bg-sidebar text-sidebar-foreground ${
-        mobile ? "w-full" : `border-r border-sidebar-border transition-[width] duration-300 ${collapsed ? "w-[72px]" : "w-[266px]"}`
+        mobile ? "w-full" : `border-r border-sidebar-border transition-[width] duration-300 ${collapsed ? "w-[64px]" : "w-[218px]"}`
       }`}
     >
       <div className="grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-3">
