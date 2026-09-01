@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CardGrid, StudyPage } from "@/components/study-page";
+import { Gamepad2 } from "lucide-react";
+
+import { CardGrid } from "@/components/study-page";
+import { DashboardLayout, PageHeading } from "@/components/dashboard-page";
 
 export const Route = createFileRoute("/arcade")({
   head: () => ({
@@ -22,18 +25,12 @@ export const Route = createFileRoute("/arcade")({
 
 function ArcadePage() {
   return (
-    <StudyPage
-      eyebrow="Play"
-      title="Arcade"
-      intro="Revision disguised as games — beat the clock, keep your streak alive and climb the class leaderboard."
-      guideId="arcade"
-      steps={[
-        { title: "Pick a game", body: "Each one pulls questions from your own material." },
-        { title: "Chase the streak", body: "Play once a day to keep your multiplier." },
-        { title: "Spend your points", body: "Unlock new decks and cosmetics." },
-      ]}
-      tip="Games count toward your daily study goal too."
-    >
+    <DashboardLayout crumbs={[{ label: "My First Study Set" }, { label: "Arcade" }]}>
+      <PageHeading
+        icon={<Gamepad2 className="size-5" aria-hidden />}
+        title="Arcade"
+        subtitle="Revision disguised as games — beat the clock and keep your streak alive"
+      />
       <CardGrid
         items={[
           { meta: "60 seconds", title: "Speed round", body: "How many questions can you clear before the timer runs out?" },
@@ -44,6 +41,6 @@ function ArcadePage() {
           { meta: "Weekly", title: "Leaderboard", body: "See where you rank against your course." },
         ]}
       />
-    </StudyPage>
+    </DashboardLayout>
   );
 }

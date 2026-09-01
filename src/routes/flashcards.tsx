@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LayoutGrid, List, NotebookTabs, Plus, Search } from "lucide-react";
 
-import { CardGrid, StudyPage } from "@/components/study-page";
+import { DashboardLayout, EmptyState, PageHeading, SetFilterRow } from "@/components/dashboard-page";
 
 export const Route = createFileRoute("/flashcards")({
   head: () => ({
@@ -22,25 +23,41 @@ export const Route = createFileRoute("/flashcards")({
 
 function FlashcardsPage() {
   return (
-    <StudyPage
-      eyebrow="Recall"
-      title="Flashcards"
-      intro="Decks built straight from your notes and missed questions, scheduled so you review right before you forget."
-      guideId="flashcards"
-      steps={[
-        { title: "Pick a deck", body: "Start with the cards due today." },
-        { title: "Answer honestly", body: "Rate each card — guessing right still means review." },
-        { title: "Come back daily", body: "Ten minutes a day beats an hour once a week." },
-      ]}
-      tip="Say the answer out loud before flipping the card."
-    >
-      <CardGrid
-        items={[
-          { meta: "24 due", title: "Definitions", body: "Terms you must be able to state word-perfect." },
-          { meta: "12 due", title: "Formulas", body: "Every formula plus when to reach for it." },
-          { meta: "9 due", title: "Missed questions", body: "Cards created from past questions you got wrong." },
-        ]}
+    <DashboardLayout crumbs={[{ label: "My First Study Set" }, { label: "Flashcards" }]}>
+      <PageHeading
+        icon={<NotebookTabs className="size-5" aria-hidden />}
+        title="Flashcards"
+        subtitle="Spaced repetition decks built from your own materials"
+        action={
+          <button type="button" className="flex shrink-0 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-ink-foreground">
+            <Plus className="size-4" aria-hidden /> Create Deck
+          </button>
+        }
       />
-    </StudyPage>
+
+      <SetFilterRow
+        right={
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="flex items-center gap-1 rounded-xl border border-border p-1">
+              <span className="rounded-lg bg-secondary p-1.5"><LayoutGrid className="size-4" /></span>
+              <span className="p-1.5 text-muted-foreground"><List className="size-4" /></span>
+            </span>
+            <span className="hidden items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground sm:flex">
+              <Search className="size-4" aria-hidden /> Search decks...
+            </span>
+          </div>
+        }
+      />
+
+      <EmptyState
+        title="No decks yet"
+        body="Generate a deck from any topic in your study set and review it a little every day."
+        action={
+          <button type="button" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-ink-foreground">
+            <Plus className="size-4" aria-hidden /> Create New
+          </button>
+        }
+      />
+    </DashboardLayout>
   );
 }

@@ -1,18 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FileQuestion, LayoutGrid, List, Plus, Search } from "lucide-react";
 
-import { CardGrid, StudyPage } from "@/components/study-page";
+import { DashboardLayout, EmptyState, PageHeading, SetFilterRow } from "@/components/dashboard-page";
 
 export const Route = createFileRoute("/past-questions")({
   head: () => ({
     meta: [
-      { title: "Past Questions — solved papers by year | ExamGlow" },
+      { title: "Past Questions — practise real exam papers | ExamGlow" },
       {
         name: "description",
-        content:
-          "Practise years of past exam papers with worked solutions, topic filters and examiner-style marking guides.",
+        content: "Work through past exam papers by topic with worked solutions and examiner-style marking.",
       },
       { property: "og:title", content: "Past Questions | ExamGlow" },
-      { property: "og:description", content: "Years of solved past papers with worked answers." },
+      { property: "og:description", content: "Real past papers, sorted by topic, with worked solutions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -22,25 +22,41 @@ export const Route = createFileRoute("/past-questions")({
 
 function PastQuestionsPage() {
   return (
-    <StudyPage
-      eyebrow="Practice"
-      title="Past Questions"
-      intro="Work through real papers year by year, with step-by-step solutions and the marking points examiners reward."
-      guideId="past-questions"
-      steps={[
-        { title: "Choose a year", body: "Start with the most recent paper — patterns repeat." },
-        { title: "Answer first", body: "Attempt the question before revealing the worked solution." },
-        { title: "Review misses", body: "Every missed question becomes a flashcard automatically." },
-      ]}
-      tip="Time yourself. Exam pressure is a skill you can practise."
-    >
-      <CardGrid
-        items={[2025, 2024, 2023, 2022, 2021, 2020].map((year) => ({
-          meta: `${year} paper`,
-          title: `Session ${year}`,
-          body: "Full paper with worked solutions, difficulty tags and per-topic breakdown.",
-        }))}
+    <DashboardLayout crumbs={[{ label: "My First Study Set" }, { label: "Past Questions" }]}>
+      <PageHeading
+        icon={<FileQuestion className="size-5" aria-hidden />}
+        title="Past Questions"
+        subtitle="Real papers sorted by topic, with worked solutions"
+        action={
+          <button type="button" className="flex shrink-0 items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-ink-foreground">
+            <Plus className="size-4" aria-hidden /> Add Paper
+          </button>
+        }
       />
-    </StudyPage>
+
+      <SetFilterRow
+        right={
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="flex items-center gap-1 rounded-xl border border-border p-1">
+              <span className="rounded-lg bg-secondary p-1.5"><LayoutGrid className="size-4" /></span>
+              <span className="p-1.5 text-muted-foreground"><List className="size-4" /></span>
+            </span>
+            <span className="hidden items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground sm:flex">
+              <Search className="size-4" aria-hidden /> Search papers...
+            </span>
+          </div>
+        }
+      />
+
+      <EmptyState
+        title="No papers yet"
+        body="Add a past paper and we'll break it into topics, hints and full worked solutions."
+        action={
+          <button type="button" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-ink-foreground">
+            <Plus className="size-4" aria-hidden /> Add Paper
+          </button>
+        }
+      />
+    </DashboardLayout>
   );
 }

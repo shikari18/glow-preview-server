@@ -55,7 +55,7 @@ const plans = [
     id: "exam-pass" as const,
     name: "Exam Pass",
     sub: "Valid until the end of the next exam season",
-    price: "$34.99",
+    price: "$25.99",
     per: "",
     badge: "EXAM PASS",
   },
@@ -73,7 +73,7 @@ function PricingPage() {
   }
 
   return (
-    <div className="dark min-h-dvh bg-background px-4 py-5 text-foreground sm:px-6 lg:px-8">
+    <div className="dark min-h-dvh bg-background px-4 py-4 text-foreground sm:px-6 lg:h-dvh lg:overflow-hidden lg:px-8 lg:py-3">
       <div className="flex items-center justify-between">
         <button
           type="button"
@@ -94,7 +94,7 @@ function PricingPage() {
         </button>
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 py-8 lg:min-h-[calc(100dvh-94px)] lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:py-4">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 py-8 lg:h-[calc(100dvh-72px)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:py-0">
         <div className="flex flex-col justify-center">
           <img
             src={balanceDoodle}
@@ -102,9 +102,9 @@ function PricingPage() {
             loading="lazy"
             width={900}
             height={760}
-            className="mx-auto w-full max-w-[280px] invert sm:max-w-xs lg:max-w-[310px]"
+            className="mx-auto w-full max-w-[280px] invert sm:max-w-xs lg:max-w-[240px]"
           />
-          <figure className="mx-auto mt-6 w-full max-w-lg rounded-2xl border border-border bg-card p-5 sm:p-6">
+          <figure className="mx-auto mt-5 w-full max-w-lg rounded-2xl border border-border bg-card p-5 sm:p-6">
             <blockquote className="text-[15px] leading-relaxed">
               “I knew ExamGlow was fantastic for me when I could remember information without having
               to put a pen on paper at all.”
@@ -134,7 +134,7 @@ function PricingPage() {
             Join <strong className="text-foreground">8M+</strong> students already using ExamGlow
           </p>
 
-          <div className="mt-5 space-y-2.5">
+          <div className="mt-4 space-y-2">
             {plans.map((plan) => {
               const active = selected === plan.id;
               return (
@@ -152,13 +152,13 @@ function PricingPage() {
                       {plan.badge}
                     </span>
                   )}
-                  <span className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3.5 sm:px-6">
+                  <span className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-2.5 sm:px-6">
                     <span className="min-w-0">
                       <span className="block font-semibold">{plan.name}</span>
                       <span className="block text-sm text-muted-foreground">{plan.sub}</span>
                     </span>
                     <span className="flex shrink-0 items-center gap-3">
-                      <span className="font-display text-2xl sm:text-3xl">
+                      <span className="font-display text-2xl">
                         {plan.price}
                         <span className="text-base text-muted-foreground">{plan.per}</span>
                       </span>
@@ -180,7 +180,7 @@ function PricingPage() {
             type="button"
             onClick={unlock}
             disabled={processing}
-            className="mt-4 w-full rounded-full bg-ink-foreground py-3.5 text-lg font-medium text-ink transition-transform hover:-translate-y-0.5 disabled:opacity-70"
+            className="mt-3 w-full rounded-full bg-ink-foreground py-3 text-lg font-medium text-ink transition-transform hover:-translate-y-0.5 disabled:opacity-70"
           >
             {processing ? "Setting up your workspace..." : "Unlock Premium"}
           </button>

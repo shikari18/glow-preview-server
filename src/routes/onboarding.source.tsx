@@ -61,7 +61,7 @@ function SourceStep() {
               i === sources.length - 1 ? "sm:col-span-2 sm:mx-auto sm:w-1/2" : ""
             }`}
           >
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-card shadow-sm ring-1 ring-border">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-ink-foreground shadow-sm ring-1 ring-border">
               {logo ? (
                 <img src={logo} alt={`${label} logo`} width={20} height={20} className="size-5" />
               ) : (
